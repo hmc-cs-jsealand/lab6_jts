@@ -61,6 +61,6 @@ void main() {
 	int settings = 0x00000000;
 	spiStart(100000, settings);
 	printf("spiStart done");
-	char message = spiSendReceive(3);
+	char message = spiSendReceive(6);
 	printf("Value was %d \n", message);
 }
