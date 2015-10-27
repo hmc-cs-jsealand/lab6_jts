@@ -53,7 +53,8 @@ char spiSendReceive(char send) {
 	return spi_reg[1];
 }
 
-void main() {
+void main(void) {
+	printf("running main");
 	pioInit();
 	printf("pioInit done");
 	spiInit();
