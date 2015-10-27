@@ -48,7 +48,7 @@ void spiStart(int freq, int settings) {
 
 char spiSendReceive(char send) {
 	digitalWrite(23, 0);
-	spio0[1] = char;
+	spi_reg[1] = char;
 	while( !(spi_reg[0] & 0x00010000));
 	digitalWrite(23, 1);
 	return spi_reg[1];
