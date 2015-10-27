@@ -54,10 +54,10 @@ char spiSendReceive(char send) {
 }
 
 void main() {
-	spiInit();
-	printf("spiInit done");
 	pioInit();
 	printf("pioInit done");
+	spiInit();
+	printf("spiInit done");
 	int settings = 0x00000000;
 	spiStart(100000, settings);
 	printf("spiStart done");
