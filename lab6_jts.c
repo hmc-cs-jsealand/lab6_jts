@@ -54,14 +54,15 @@ char spiSendReceive(char send) {
 }
 
 void main(void) {
-	printf("running main");
+	printf("running main\n");
 	pioInit();
-	printf("pioInit done");
+	printf("pioInit done\n");
 	spiInit();
-	printf("spiInit done");
+	printf("spiInit done\n");
 	int settings = 0x00000000;
 	spiStart(100000, settings);
-	printf("spiStart done");
+	printf("spiStart done\n");
 	char message = spiSendReceive(6);
 	printf("Value was %d \n", message);
 }
+
