@@ -47,20 +47,19 @@ void spiStart(int freq, int settings) {
 }
 
 char spiSendReceive(char send) {
-	digitalWrite(23, 0);
-	spi_reg[1] = char;
+	spi_reg[1] = 0x6;
 	while( !(spi_reg[0] & 0x00010000));
-	digitalWrite(23, 1);
 	return spi_reg[1];
 }
 
 void main() {
 	spiInit();
+	printf("spiInit done");
 	pioInit();
-	pinMode(23, OUTPUT);
-	digitalWrite(23, 1);
+	printf("pioInit done");
 	int settings = 0x00000000;
-	spiStart(100000, settings)
+	spiStart(100000, settings);
+	printf("spiStart done");
 	char message = spiSendReceive('H');
 	printf("Value was %d\n", message);
 }
