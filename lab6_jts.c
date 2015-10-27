@@ -4,10 +4,10 @@
 #define SPI_BASE	0x3F003000
 
 // SPI pointer that will be memory mapped when spiInit() is called
-volatile unsigned int *spi0; //pointer to base of spi stuff
+volatile unsigned int *spi_reg; //pointer to base of spi stuff
 
 
-// memory mapping spi0 register
+// memory mapping spi_reg register
 void spiInit() {
 	int  mem_fd;
 	void *reg_map;
@@ -32,7 +32,7 @@ void spiInit() {
       exit(-1);
     }
 
-	spi0 = (volatile unsigned *)reg_map;
+	spi_reg = (volatile unsigned *)reg_map;
 }
 
 void spiStart(int freq, int settings) {
@@ -41,17 +41,17 @@ void spiStart(int freq, int settings) {
 	pinMode(10, ALT0);
 	pinMode(11, ALT0);
 
-	spi0[2] = 250000000/freq;				// set clock rate
-	spi0[0] = settings;
-	spi0[0] |= 0x00000080;					// set TA bit high
+	spi_reg[2] = 250000000/freq;				// set clock rate
+	spi_reg[0] = settings;
+	spi_reg[0] |= 0x00000080;					// set TA bit high
 }
 
 char spiSendReceive(char send) {
 	digitalWrite(23, 0);
 	spio0[1] = char;
-	while( !(spi0[0] & 0x00010000));
+	while( !(spi_reg[0] & 0x00010000));
 	digitalWrite(23, 1);
-	return spi0[1];
+	return spi_reg[1];
 }
 
 void main() {
